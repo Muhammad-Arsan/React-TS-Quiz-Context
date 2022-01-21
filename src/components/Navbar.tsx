@@ -38,7 +38,7 @@ const Navbar = () => {
               <li className="nav-item">
                 <a
                   className="nav-link"
-                  href="https://github.com/Muhammad-Arsan/React-TS-Quiz"
+                  href="https://github.com/Muhammad-Arsan/React-TS-Quiz-Context"
                 >
                   Code Link
                 </a>
