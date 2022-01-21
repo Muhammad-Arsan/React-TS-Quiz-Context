@@ -5,6 +5,7 @@ import { data } from "./Categories";
 import { shuffleArray } from "../Utils";
 import { number as numbers } from "./data";
 import { NavLink, useNavigate } from "react-router-dom";
+import { readJsonConfigFile } from "typescript";
 
 export type Question = {
   category: string;

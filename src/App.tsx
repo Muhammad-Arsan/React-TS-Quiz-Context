@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { SetStateAction, useState } from "react";
 
 import Navbar from "./components/Navbar";
 import Start from "./components/Start";
@@ -6,31 +6,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Categories from "./components/Categories";
 import Home from "./components/Home";
 import { globalContext } from "./context/Context";
-
-type globalContext = {};
+import { UserContextProvider } from "./context/categoryContext";
 
 const App = () => {
-  const [amount, setAmount] = useState<any>(10);
-  const [category, setCategory] = useState<string>("");
-  const [difficulty, setDifficulty] = useState<string>("");
-
   return (
-    <globalContext.Provider
-      value={{ amount, setAmount }}
-      // value={{
-      //   amount: [amount, setAmount],
-      //   category: [category, setCategory],
-      //   difficulty: [difficulty, setDifficulty],
-      // }}
-      // value={[
-      //   amount,
-      //   setAmount,
-      //   category,
-      //   setCategory,
-      //   difficulty,
-      //   setDifficulty,
-      // ]}
-    >
+    <UserContextProvider>
       <Router>
         <Navbar />
         <Routes>
@@ -43,7 +23,7 @@ const App = () => {
           <Route path="/start" element={<Start />} />
         </Routes>
       </Router>
-    </globalContext.Provider>
+    </UserContextProvider>
   );
 };
 

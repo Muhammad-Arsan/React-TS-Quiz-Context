@@ -1,10 +1,10 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { shuffleArray } from "../Utils";
 import { Category, Numbers } from "../Data/Category";
 import { setNumber } from "./data";
-import { globalContext } from "../context/Context";
+import { UserContext } from "../context/categoryContext";
 
 export type Question = {
   category: string;
@@ -37,30 +37,21 @@ export const fetchQuestions = async (
 };
 
 const Categories: React.FC = () => {
-  // const [amount, setAmount] = useState<any>(10);
-  // const [category, setCategory] = useState<string>("");
-  // const [difficulty, setDifficulty] = useState<string>("");
+  const context = useContext(UserContext);
+  console.log(context);
+  const {
+    amount,
+    setAmount,
+    category,
+    setCategory,
+    difficulty,
+    setDifficulty,
+  } = context;
 
-  // const [error, setErrors] = useState<any>(false);
-  // const { amount } = useContext(globalContext);
-
-  // const { amount, category, difficulty } = useContext(globalContext);
-  // const [amountValue, setAmountValue] = amount;
-  // const [categoryValue, setCategoryValue] = category;
-  // const [difficultyValue, setDifficultyValue] = difficulty;
-
-  const value = useContext(globalContext);
-  const { amount, setAmount } = value;
-  // const { amountValue, setAmountValue } = amount;
-  // const { categoryValue, setCategoryValue } = category;
-  // const { difficultyValue, setDifficultyValue } = difficulty;
-  useContext(globalContext);
   let navigate = useNavigate();
-  console.log("Amount", amount);
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    console.log("func called");
-    //     fetchQuestions(10, "Sports", "easy");
     fetchQuestions(amount, category, difficulty);
     navigate("/start");
   };
@@ -96,8 +87,8 @@ const Categories: React.FC = () => {
                 <select
                   className="form-select"
                   aria-label="Default select example"
-                  value={categoryValue}
-                  onChange={(e) => setCategoryValue(e.target.value)}
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
                 >
                   {Category.map((cat: any) => (
                     <option key={cat.value} value={cat.value}>
@@ -113,8 +104,8 @@ const Categories: React.FC = () => {
                 <select
                   className="form-select"
                   aria-label="Default select example"
-                  value={difficultyValue}
-                  onChange={(e) => setDifficultyValue(e.target.value)}
+                  value={difficulty}
+                  onChange={(e) => setDifficulty(e.target.value)}
                 >
                   <option value="easy">Easy</option>
                   <option value="medium">Medium</option>
