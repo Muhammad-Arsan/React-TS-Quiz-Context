@@ -5,7 +5,6 @@ import Start from "./components/Start";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Categories from "./components/Categories";
 import Home from "./components/Home";
-import { globalContext } from "./context/Context";
 import { UserContextProvider } from "./context/categoryContext";
 
 const App = () => {
